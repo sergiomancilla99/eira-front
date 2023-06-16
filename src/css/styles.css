@@ -1,0 +1,874 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+html, body, #root{
+    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+    color: #262626;
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow: hidden;
+}
+
+main {
+    min-height: 88vh;
+}
+
+a, a:hover {
+    color: #4971b7;
+}
+
+.nav-link {
+    font-weight: 500;
+}
+
+.bgNavbarGreen {
+    background-color: #36beb0;
+}
+
+.dropdown-menu {
+    width: max-content;
+}
+
+.dropdown-menu[data-bs-popper] {
+    right: 0 !important;
+    left: auto !important;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.nombreNavbar {
+    color: #4971b7;
+    padding-left: 5px;
+}
+
+#sign-in, #login {
+    background-image: url('../imgs/fondo-registro-login.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#login h1, #sign-in h1 {
+    font-weight: 600;
+    font-size: 40px;
+}
+
+.btn-login, .btn-login:hover, .btn-login:disabled, .btn-login:active, .btn-login:focus {
+    background-color: #f3944f;
+    color: #fff;
+    border: none;
+    width: 40%;
+    border-radius: 10px;
+    padding: 3px 10px;
+}
+
+#header-home {
+    background-image: url('../imgs/fondo-header-home.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#header-home h1 {
+    font-weight: 700;
+    color: #014035;
+}
+
+#header-home p {
+    font-size: 19px;
+}
+
+#header-home a {
+    background-color: #fbbe49;
+    color: #262626;
+    border: none;
+    padding: 5px;
+    width: 45%;
+}
+
+.down-div {
+    margin-top: -10px;
+    background-color: transparent;
+}
+
+.down-button {
+    background-color: #fff;
+    padding: 10px 12px;
+    border-radius: 50%;
+}
+
+#funciones {
+    background-image: url('../imgs/fondo-seccion-1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.titulo-item {
+    color: #42B7AD;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.texto-item {
+    font-size: 14px;
+}
+
+#pacientes {
+    background-image: url('../imgs/fondo-pacientes.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#pacientes h2, #profesionales h2, #contacto h2 {
+    font-weight: 800;
+}
+
+#pacientes a {
+    background-color: #F3944D;
+    color: white;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px;
+    width: 55%;
+}
+
+#profesionales a {
+    background-color: #4971B7;
+    color: white;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px;
+    width: 58%;
+}
+
+#contacto {
+    background-image: url('../imgs/fondo-contacto.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#contacto button {
+    background-color: #F3944D;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px;
+    width: 20%;
+}
+
+.text-verde-claro {
+    color: #42B7AD;
+}
+
+.btn-verde, .btn-verde:hover, .btn-verde:active,.btn-verde:focus,.btn-verde:disabled {
+    background-color: #42B7AD;
+    color: #fff;
+    border: none;
+}
+
+.btn-verde-borde, .btn-verde-borde:hover, .btn-verde-borde:active, .btn-verde-borde:focus, .btn-verde-borde:disabled {
+    background-color: transparent !important;
+    border: solid 1px #42B7AD !important;
+    color: #42B7AD !important;
+}
+
+.titulo {
+    font-weight: 600;
+    font-size: 35px !important;
+}
+
+#listadoPacientes {
+    background-image: url('../imgs/fondo-listado-pacientes.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+#buscador {
+    background-image: url('../imgs/icono-buscador.png');
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    text-indent: 20px;
+    background-color: #ededed;
+    border: none;
+    border-radius: 10px;
+}
+
+#buscador::placeholder, #horaForm::placeholder {
+    color: #666666;
+}
+
+#horaForm, #horaForm:focus, #confirmado {
+    background-color: #ededed;
+    border: none;
+    border-radius: 10px;
+    height: 45px;
+    text-indent: 10px;
+    outline: none;
+    width: 100%;
+}
+
+.form-label {
+    margin-bottom: 0 !important;
+}
+
+.floating-distance-2>label {
+    text-indent: 27px;
+}
+
+.floating-distance>label {
+    text-indent: 35px;
+}
+
+.form-control {
+    height: 45px !important;
+}
+
+textarea.form-control {
+    height: auto !important;
+}
+
+.form-floating>label {
+    padding: 0.6rem 0.75rem !important;
+}
+
+#nombre, #apellido, #telefono, #email, #dni, #especialidad, #matricula, #password, #obraSocial, #afiliado {
+    background-position: 10px center;
+    background-repeat: no-repeat;
+    text-indent: 25px;
+    background-color: #ededed;
+    border: none;
+    border-radius: 10px;
+    height: 45px;
+}
+
+#mensajeContacto {
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    text-indent: 25px ;
+    background-color: #ededed;
+    border: none;
+    border-radius: 10px;
+}
+
+#nombre, #apellido {
+    background-image: url('../imgs/icono-nombre.png');
+}
+
+#password {
+    background-image: url('../imgs/icono-contrasena.png');
+    border-radius: 5px 0 0 5px;
+}
+
+#telefono {
+    background-image: url('../imgs/icono-telefono-gris.png');
+}
+
+#email, #mensajeContacto {
+    background-image: url('../imgs/icono-email-gris.png');
+}
+
+#dni, #afiliado {
+    background-image: url('../imgs/icono-identificacion-gris.png');
+}
+
+#especialidad {
+    background-image: url('../imgs/icono-estetoscopio.png');
+}
+
+#matricula {
+    background-image: url('../imgs/icono-matricula.png');
+}
+
+#obraSocial {
+    background-image: url('../imgs/icono-obra-social.png');
+}
+
+.form-control, .form-control:focus {
+    background-color: #ededed;
+    border: none;
+    border-radius: 10px;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem rgb(54 190 1756/ 45%)
+}
+
+form-control::placeholder {
+    color: #666666;
+}
+
+.table>thead {
+    border-bottom: 2px solid #014035;
+}
+
+.table>tbody>tr {
+    border-bottom: 2px solid #d9e3e1;
+}
+
+.btn-crear, .btn-crear:hover, .btn-crear:active, .btn-crear:focus, .btn-crear:disabled {
+    background-color: #42b7ad;
+}
+
+.btn-ver-progreso, .btn-ver-progreso:hover, .btn-ver-progreso:active, .btn-ver-progreso:focus, .btn-ver-progreso:disabled {
+    background-color: #014035;
+}
+
+.btn-ver-pswd, .btn-ver-pswd:hover {
+    background-color: #ededed;
+    color: #262626;
+    border-radius: 0 5px 5px 0;
+    padding: 8px 13px;
+    height: 45px;
+}
+
+.btn-ver, .btn-ver:hover, .btn-ver:active, .btn-ver:focus, .btn-ver:disabled {
+    background-color: #fbbe49;
+}
+
+.btn-eliminar, .btn-eliminar:hover, .btn-eliminar:active, .btn-eliminar:focus, .btn-eliminar:disabled {
+    background-color: #f3944d;
+}
+
+.btn-ver-historia, .btn-ver-historia:hover, .btn-ver-historia:active, .btn-ver-historia:focus, .btn-ver-historia:disabled {
+    background-color: #4971b7;
+}
+
+.link-eliminar, .link-eliminar:hover, .link-eliminar:active, .link-eliminar:focus, .link-eliminar:disabled {
+    background-color: transparent;
+    text-decoration: none;
+    color: #f3944f;
+}
+
+.btn-editar-trat, .btn-editar-trat:hover, .btn-editar-trat:active, .btn-editar-trat:focus, .btn-editar-trat:disabled {
+    background-color: transparent;
+    text-decoration: underline;
+    color: #4971b7;
+    font-size: 14px;
+}
+
+.btn-eliminar-trat, .btn-eliminar-trat:hover, .btn-eliminar-trat:active, .btn-eliminar-trat:focus, .btn-eliminar-trat:disabled {
+    background-color: transparent;
+    text-decoration: underline;
+    color: #f3944f;
+    font-size: 14px;
+    border: none;
+}
+
+.flechaPag a {
+    border: none;
+    color: #014035;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.flechaPag a:hover {
+    background-color: transparent;
+}
+
+.numPag {
+    margin: auto 7px;
+}
+
+.numPag.active .page-link, .numPag.active .page-link:hover {
+    color: #014035;
+    background-color: #fff;
+    border: 1px solid #014035;
+    border-radius: 5px;
+}
+
+.numPag a, .numPag a:hover {
+    background-color: #014035;
+    color: #fff;
+    border: 1px solid #014035;
+    border-radius: 5px;
+}
+
+.fondo-generico {
+    background-image: url('../imgs/fondo-generico.jpg');
+    background-repeat: repeat-y;
+}
+
+.accordion-header p {
+    margin-bottom: 0px;
+}
+
+.accordion-item {
+    border: none !important;
+    background-color: transparent;
+    border-radius: 5px !important;
+}
+
+.accordion-button, .accordion-button:link, .accordion-button:visited, .accordion-button:hover, .accordion-button:active  {
+    color:#262626 !important;
+    font-size: 18px;
+    text-decoration: none !important;
+    border: hidden !important;
+    border-color: #FFF !important;
+    box-shadow: 0px !important;
+    border-radius: 5px;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #42b7ad;
+    color: #ffffff !important;
+}
+
+.tratamiento-header {
+    background-color: #42b7ad;
+    color: #ffffff;
+    font-size: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.tratamiento-header-paciente {
+    background-color: #42b7ad;
+    color: #ffffff;
+    font-size: 17px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+}
+
+.accordion-button::after {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23f3944f'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
+}
+
+.btn-crear-tratamiento, .btn-crear-tratamiento:hover, .btn-crear-tratamiento:disabled, .btn-crear-tratamiento:active, .btn-crear-tratamiento:focus  {
+    background-color: #f3944f;
+    color: #ffffff;
+    font-weight: 500;
+    width: 23%;
+    border-radius: 10px;
+    padding: 3px 10px;
+    border: none;
+}
+
+.btn-agregar, .btn-agregar:hover, .btn-agregar:disabled, .btn-agregar:active, .btn-agregar:focus {
+    background-color: #4971b7;
+    color: #ffffff;
+    font-weight: 500;
+    width: 15%;
+    border-radius: 10px;
+    padding: 3px 10px;
+}
+
+.btn-editar, .btn-editar:hover, .btn-editar:disabled, .btn-editar:active, .btn-editar:focus {
+    background-color: #4971b7;
+    color: #ffffff;
+    font-weight: 500;
+    border-radius: 10px;
+    padding: 3px 10px;
+    width: 35%;
+}
+
+.btn-agregar-trat, .btn-agregar-trat:hover, .btn-agregar-trat:active, .btn-agregar-trat:focus, .btn-agregar-trat:disabled {
+    background-color: #fbbe49;
+    color: #ffffff;
+    font-weight: 500;
+    border-radius: 10px;
+    padding: 3px 10px;
+    width: 35%;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.lista-agregada, .lista-agregada-meds, .lista-antecedentes, .lista-archivos {
+    list-style: none;
+    padding-left: 0;
+}
+
+.lista-antecedentes li, .lista-archivos li {
+    padding: 15px 20px;
+}
+
+.lista-agregada li {
+    background-color: #FFF;
+    border: 1px solid #e5e5e5;
+    text-align: center;
+    padding: 5px 15px;
+}
+
+.text-antecedentes {
+    padding: 15px 20px;
+}
+
+.lista-agregada-meds li{
+    background-color: #FFF;
+    border: 1px solid #e5e5e5;
+    padding: 15px 20px;
+    line-height: 2.1em;
+}
+
+.bt-azul {
+    border-top: 15px solid #4971b7;
+}
+
+.btn-editar-perfil, .btn-editar-perfil:hover, .btn-editar-perfil:active, .btn-editar-perfil:focus, .btn-editar-perfil:disabled {
+    background-color: #4971b7;
+    color: #fff;
+    padding: 3px 30px;
+    border-radius: 10px;
+}
+
+.btn-eliminar-perfil, .btn-eliminar-perfil:hover, .btn-eliminar-perfil:active, .btn-eliminar-perfil:focus, .btn-eliminar-perfil:disabled {
+    background-color: #f3944f;
+    color: #fff;
+    padding: 3px 50px;
+    border-radius: 10px;
+}
+
+#dashboard, #perfil {
+    background-image: url('../imgs/fondo-listado-pacientes.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.title-dashboard {
+    font-weight: 700;
+    font-size: 19px;
+}
+
+.text-azul {
+    color: #4971B7;
+}
+
+.text-verde {
+    color: #42b7ad;
+}
+
+.text-amarillo {
+    color: #fbbe49;
+}
+
+.text-naranja {
+    color: #f3944d;
+}
+
+.text-verde-oscuro {
+    color: #014035
+}
+
+.bg-verde {
+    background-color: #42b7ad !important;
+}
+
+.bg-naranja {
+    background-color: #f3944d !important;
+}
+
+#usuarioChat {
+    cursor: pointer;
+}
+
+footer {
+    background-color: #014035;
+    padding: 20px 0px;
+    width: 100%;
+}
+
+footer p {
+    margin-bottom: 0;
+    color: #ffffff;
+    font-size: 13px;
+}
+
+footer ul {
+    margin-bottom: 0;
+    color: #ffffff;
+    font-size: 13px;
+    list-style: none;
+}
+
+footer ul li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+#logueado-navbar .navbar-toggler-icon {
+    background-image: url("../imgs/icono-usuario-blanco.png") !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+.acciones button, .acciones button:hover, .acciones button:active, .acciones button:focus, .acciones button:target  {
+    font-size: 14px;
+    background-color: #36beb0;
+    border: none;
+}
+
+.link-eliminar {
+    color: #4971B7;
+    padding: 0;
+    border: none;
+    text-decoration: none;
+    font-size: 16px !important;
+    color: #F3944D;
+    background-color: transparent !important;
+    margin-left: 15px;
+}
+
+.swal2-title, .swal2-html-container {
+    color: #262626;
+    font-family: 'Poppins', sans-serif;
+}
+
+.swal2-actions button {
+    border-radius: 10px !important;
+    padding: 3px 50px;
+}
+
+.btn-mensaje-chat, .btn-mensaje-chat:hover, .btn-mensaje-chat:active, .btn-mensaje-chat:focus, .btn-mensaje-chat:disabled {
+    background-color: #36beb0;
+    color: #ffffff;
+    border: none;
+    border-radius: 0 10px 10px 0;
+}
+
+
+#mensaje {
+    border-radius: 10px 0 0 10px;
+}
+
+.mensaje-own {
+    background-color: #5AD1C4;
+    color: #fff;
+}
+
+.mensaje-other {
+    background-color: #688FD6;
+    color: #fff;
+}
+
+.mensaje-own #fecha, .mensaje-other #fecha {
+    font-size: 12px;
+}
+
+.box-mensajes {
+    height: 55vh;
+	overflow-y: scroll;
+}
+
+.btn-azul, .btn-azul:hover, .btn-azul:active, .btn-azul:focus, .btn-azul:disabled {
+    background-color: #688FD6;
+    color: #fff;
+    border: none;
+}
+
+.btn-padding {
+    padding: 3px 30px;
+    border-radius: 10px;
+}
+
+.btn-naranja, .btn-naranja:hover, .btn-naranja:active, .btn-naranja:focus, .btn-naranja:disabled {
+    background-color: #f3944f;
+    color: #ffffff;
+    border: none;
+}
+
+.btn-confirmacion-trat {
+    width: 18%;
+    padding: 3px 10px;
+}
+
+#error-404 {
+    background-color: #fff
+}
+
+.color-spinner {
+    border-color: #36beb0 !important;
+    border-right-color: transparent !important;
+}
+
+.confirmado {
+    background-color: #36beb0;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 3px 9px;
+}
+
+.no-confirmado {
+    background-color: #f3944f;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 3px 9px;
+}
+
+.table-td-progreso {
+    background-color: #ffffff;
+    padding: 20px 0 !important;
+}
+
+@media (max-width: 992px) {
+    #header-home, #pacientes, #profesionales {
+        text-align: center;
+    }
+
+    #header-home h1 {
+        font-size: 30px;
+        margin-top: 30px;
+    }
+
+    #header-home p {
+        font-size: 17px;
+    }
+
+    #header-home img, #profesionales img {
+        width: 60%;
+        margin-bottom: 30px;
+    }
+
+    #pacientes img {
+        width: 70%;
+    }
+
+    .logout {
+        color: #ffffff8c;
+        font-weight: 500;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+
+    .navbar-mobile a {
+        color: #ffffff8c;
+        font-weight: 500;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+
+    .navbar-mobile a, .navbar-mobile form{
+        margin-left: 38px;
+    }
+
+    .btn-agregar, .btn-agregar:hover {
+        width: 30%;
+    }
+
+    .btn-crear-tratamiento, .btn-crear-tratamiento:hover {
+        width: 35%;
+    }
+
+    .btn-confirmacion-trat, .btn-confirmacion-trat:hover {
+        width: 25%;
+    }
+}
+
+@media (max-width: 768px) {
+    #header-home img {
+        width: 80%;
+    }
+
+    #profesionales img, #pacientes img {
+        width: 100%;
+    }
+
+    .btn-agregar, .btn-agregar:hover {
+        width: 40%;
+    }
+
+    .btn-crear-tratamiento, .btn-crear-tratamiento:hover {
+        width: 50%;
+    }
+
+    .swal2-title {
+        font-size: 25px;
+    }
+
+    .btn-editar, .btn-editar:hover, .btn-agregar-trat, .btn-agregar-trat:hover {
+        width: 70%;
+    }
+
+    .btn-confirmacion-trat, .btn-confirmacion-trat:hover {
+        width: 35%;
+    }
+}
+
+@media (max-width: 576px) {
+    .btn-login, .btn-login:hover {
+        width: 70%;
+    }
+
+    #pacientes a, #profesionales a, #header-home a, #contacto button {
+        width: 80%;
+    }
+
+    .titulo {
+        font-size: 28px !important;
+    }
+
+    .btn-agregar, .btn-agregar:hover {
+        width: 70%;
+    }
+
+    .btn-crear-tratamiento, .btn-crear-tratamiento:hover {
+        width: 80%;
+    }
+
+    .btn-editar, .btn-editar:hover, .btn-agregar-trat, .btn-agregar-trat:hover {
+        width: 100%;
+    }
+
+    .btn-confirmacion-trat, .btn-confirmacion-trat:hover {
+        width: 50%;
+    }
+}
+
+@media (max-width: 375px) {
+    .btn-login, .btn-login:hover {
+        width: 100%;
+    }
+
+    #header-home h1 {
+        font-size: 25px;
+    }
+
+    #header-home p {
+        font-size: 16px;
+    }
+
+    #pacientes h2, #profesionales h2, #contacto h2 {
+        font-size: 23px;
+    }
+
+    #pacientes a, #profesionales a, #header-home a, #contacto button {
+        width: 100%;
+    }
+
+    #sign-in p {
+        font-size: 14px;
+    }
+
+    .titulo {
+        font-size: 25px !important;
+    }
+
+    .btn-agregar, .btn-crear-tratamiento, .btn-agregar:hover, .btn-crear-tratamiento:hover {
+        width: 100%;
+    }
+
+    .btn-confirmacion-trat, .btn-confirmacion-trat:hover {
+        width: 80%;
+    }
+}
