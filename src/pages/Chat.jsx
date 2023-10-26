@@ -7,7 +7,8 @@ import Mensajes from '../components/Mensajes'
 import { SocketContext } from '../context/SocketContext'
 import { Container, Row, Col, Form, FloatingLabel, Button, Spinner } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-
+import * as PacientesService from "../services/pacientes.service.js"
+import * as ProfesionalesService from "../services/profesionales.service.js"
 function Chat() {
     const [chats, setChats] = useState([])
     const [chatActual, setChatActual] = useState(null)
@@ -23,6 +24,7 @@ function Chat() {
     const [loading, setLoading] = useState(true)
     const [loadingMensaje, setLoadingMensaje] = useState(true)
     const [loadingButton, setLoadingButton] = useState(false)
+    const [usuario, setUsuario] = useState([])
 
     useEffect(
         () => {
@@ -140,7 +142,17 @@ function Chat() {
                                 <p>Chats</p>
                                 <ul className="list-unstyled">
                                     {chats.map( (chat, i) =>
-                                    <div onClick={ () => setChatActual(chat) } key={chat._id}>
+                                    <div onClick={ () =>
+                                    {
+                                        setChatActual(chat)
+                                        const receptorId = chat?.usuarios.find((usuario) => usuario !== usuarioLogueado?._id)
+                                        !usuarioLogueado?.matricula ?
+                                            ProfesionalesService.traerPorId(receptorId)
+                                            .then( usuario => setUsuario(usuario) ) :
+                                            PacientesService.traerPorId(receptorId)
+                                            .then( usuario => setUsuario(usuario) )
+                                          // eslint-disable-next-line
+                                    } } key={chat._id}>
                                         <ChatUsuarios  chat={chat} usuarioLogueado={usuarioLogueado}  />
                                     </div> )
                                     }
@@ -151,12 +163,15 @@ function Chat() {
                                 {
                                     chatActual ?
                                     <>
-                                        {loadingMensaje && 
+                                        {loadingMensaje &&
                                             <div className='text-center'>
                                                 <Spinner animation="border" className='color-spinner' />
                                             </div>
                                         }
 
+                                        {!loadingMensaje &&
+                                        <>
+                                        <p className='fs-2'>{usuario?.nombre} {usuario?.apellido}</p>
                                         <div className="box-mensajes p-3">
                                             {mensajes.map( (mensaje,i) =>
                                             <div ref={scrollRef} key={i}>
@@ -164,6 +179,7 @@ function Chat() {
                                             </div>
                                             )}
                                         </div>
+                                        </>}
 
                                         <Form onSubmit={handleSubmit} className="mt-5">
                                             <div className='d-flex align-items-stretch my-3'>

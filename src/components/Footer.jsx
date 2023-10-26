@@ -7,7 +7,7 @@ function Footer() {
             <Container fluid>
                 <Row>
                     <Col lg={6} className="order-1 order-lg-0">
-                        <p className="text-center text-lg-start">EIRA 2022 © Todos los derechos reservados</p>
+                        <p className="text-center text-lg-start">EIRA 2023 © Todos los derechos reservados</p>
                     </Col>
                     <Col lg={6} className="order-0 order-lg-1 mb-3 mb-lg-0">
                         <ul className="d-lg-flex justify-content-end text-center ps-0">

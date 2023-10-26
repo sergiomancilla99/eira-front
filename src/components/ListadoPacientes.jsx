@@ -24,20 +24,22 @@ function ListadoPacientes() {
 
     useEffect(
         () => {
-            if(!usuarioLogueado?.matricula) { navigate('/', { replace: true }) }
-            if(!usuarioLogueado?.verificado) { navigate('/falta-verificacion', {replace: true}) }
+            if(!usuarioLogueado?.matricula) {
+                navigate('/paciente', { replace: true })
+            } else if(!usuarioLogueado?.verificado) {
+                navigate('/falta-verificacion', {replace: true})
+            }
           // eslint-disable-next-line
         }, [])
 
     useEffect(() => {
             ProfesionalesService.traerPacientes(usuarioLogueado?._id)
             .then((resp) => {
-                setPacientes(resp)
+                setPacientes(resp.reverse())
                 setLoading(false)
             })
         // eslint-disable-next-line
     }, [])
-    console.log("Pacientes vinculados", pacientes)
 
     const indexUltimoPaciente = paginaActual * pacientesPorPagina
     const indexPrimerPaciente = indexUltimoPaciente - pacientesPorPagina
@@ -74,7 +76,7 @@ function ListadoPacientes() {
                 '',
                 'success'
             )}
-            setLoadingButton(true)
+            setLoadingButton(false)
         })
     }
 

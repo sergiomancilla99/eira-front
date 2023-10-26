@@ -34,7 +34,6 @@ function EditarPerfilProfesional(props) {
             authService.actualizarToken(email)
             .then(({usuario, token}) => {
                 setLoadingButton(false)
-                console.log('login?')
                 props.onLogin({usuario, token})
             })
         })

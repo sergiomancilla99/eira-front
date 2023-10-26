@@ -17,15 +17,18 @@ function Solicitudes() {
     const [loading, setLoading] = useState(true)
     const [loadingButton, setLoadingButton] = useState(false)
     const [loadingButtonAgregar, setLoadingButtonAgregar] = useState(false)
+    const [largo, setLargo] = useState(0)
 
     useEffect(() => {
         SolicitudesService.traerPorUsuario(usuarioLogueado?._id)
         .then(resp => {
             const soliEnviadas = resp.filter(solicitud => solicitud.emisor._id === usuarioLogueado?._id)
             const soliRecibidas = resp.filter(solicitud => solicitud.receptor._id === usuarioLogueado?._id)
+            const soliRecibidasNoAceptadas = resp.filter(solicitud => solicitud.receptor._id === usuarioLogueado?._id && !solicitud.aceptado)
             setSolicitudes(resp)
             setSolicitudesEnviadas(soliEnviadas)
             setSolicitudesRecibidas(soliRecibidas)
+            setLargo(soliRecibidasNoAceptadas.length)
             setLoading(false)
         })
 
@@ -42,9 +45,7 @@ function Solicitudes() {
     function aceptarSolicitud(emisor, receptor) {
         setLoadingButton(true)
         SolicitudesService.agregarUsuario(emisor, receptor)
-        .then(resp => {
-            SolicitudesService.traerPorUsuario(usuarioLogueado?._id)
-            .then(resp => setSolicitudes(resp))
+        .then(() => {
             setLoadingButton(false)
         })
 
@@ -53,7 +54,7 @@ function Solicitudes() {
             receptor: receptor._id
         }
         ChatService.crear(usuarios)
-        .then(resp => console.log(resp))
+        .then(resp => {})
     }
 
     function buscarVinculacion(idProfesional) {
@@ -106,7 +107,7 @@ function Solicitudes() {
                                         <Alert key="info" variant='info' className='shadow py-5 my-4'>
                                             <h2 className='fs-4 mb-3'>Solicitudes</h2>
                                             <ul className="list-unstyled">
-                                            {solicitudesRecibidas.map((solicitud, i) =>
+                                            {largo !== 0 && solicitudesRecibidas.map((solicitud, i) =>
                                                 <li key={i}>
                                                     <span className="pb-2 mb-3 border-bottom border-dark d-flex align-items-center justify-content-between">
                                                     {!solicitud.aceptado && <>
@@ -123,7 +124,7 @@ function Solicitudes() {
                                                 </li>
                                             )}
                                             </ul>
-                                            {solicitudesRecibidas.length === 0 && <p> No tenés solicitudes.</p>}
+                                            {largo === 0 && <p> No tenés solicitudes.</p>}
                                         </Alert>
 
                                         {busqueda &&

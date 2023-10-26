@@ -7,6 +7,7 @@ import FormEjercicios from '../components/FormEjercicios'
 import { Card, Container, Row, Col, Form, FloatingLabel, Spinner, Button } from 'react-bootstrap'
 import * as PacientesService from '../services/pacientes.service.js'
 import { UsuarioContext } from '../context/UsuarioContext.jsx'
+import { toast } from 'react-hot-toast'
 
 function Tratamiento() {
     const [comidas, setComidas] = useState([])
@@ -21,27 +22,37 @@ function Tratamiento() {
 
     useEffect(
         () => {
-            if(!usuarioLogueado?.matricula) { navigate('/', { replace: true }) }
-            if(!usuarioLogueado?.verificado) { navigate('/falta-verificacion', {replace: true}) }
+            if(!usuarioLogueado?.matricula) {
+                navigate('/paciente', { replace: true })
+            } else if(!usuarioLogueado?.verificado) {
+                navigate('/falta-verificacion', {replace: true})
+            }
           // eslint-disable-next-line
         }, [])
 
     function handleSubmit(ev) {
         ev.preventDefault()
-        setLoadingButton(true)
-        const id_medico = ev.target.id_medico.value
-        const id_paciente = ev.target.id_paciente.value
-        const profesional_nombre = ev.target.profesional_nombre.value
-        const profesional_apellido = ev.target.profesional_apellido.value
-        const diagnostico = ev.target.diagnostico.value
-
-        TratamientoService.crear({tratamiento: {comidas, medicamentos, ejercicios}, id_medico, id_paciente, profesional_nombre, profesional_apellido,diagnostico})
-        .then(() => {
-            setLoadingButton(false)
-            navigate(`/profesional/pacientes`, { replace: true })
-        })
-        setComidas([])
-        setMedicamentos([])
+        if(comidas.length === 0 && medicamentos.length === 0 && ejercicios.length === 0) {
+            toast.error("No se puede crear un tratamiento vacio")
+        } else {
+            console.log("si hay")
+            setLoadingButton(true)
+            const id_medico = ev.target.id_medico.value
+            const id_paciente = ev.target.id_paciente.value
+            const profesional_nombre = ev.target.profesional_nombre.value
+            const profesional_apellido = ev.target.profesional_apellido.value
+            const diagnostico = ev.target.diagnostico.value
+    
+            TratamientoService.crear({tratamiento: {comidas, medicamentos, ejercicios}, id_medico, id_paciente, profesional_nombre, profesional_apellido,diagnostico})
+            .then(() => {
+                toast.success("Tratamiento creado")
+                setLoadingButton(false)
+                navigate(`/profesional/pacientes`, { replace: true })
+            })
+            setComidas([])
+            setMedicamentos([])
+        }
+       
     }
 
     function guardarComidas(listaComidas) {
@@ -62,7 +73,6 @@ function Tratamiento() {
             setPaciente(resp)
             setLoading(false)
         })
-        console.log(medicamentos)
         // eslint-disable-next-line
     }, [medicamentos])
 

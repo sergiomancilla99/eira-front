@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Card, Container, Row, Col, Form, Table } from 'react-bootstrap'
+import { Card, Container, Row, Col, Form, Table, Spinner } from 'react-bootstrap'
 import Paginador from '../../components/Paginador.jsx'
 import { useNavigate } from 'react-router-dom'
 import * as PacientesService from '../../services/pacientes.service.js'
@@ -10,6 +10,7 @@ function ListadoPacientes() {
     const [paginaActual, setPaginaActual] = useState(1)
     // eslint-disable-next-line no-unused-vars
     const [pacientesPorPagina, setPacientesPorPagina] = useState(5)
+    const [loading, setLoading] = useState(true)
 
     let navigate = useNavigate();
 
@@ -23,7 +24,10 @@ function ListadoPacientes() {
 
     useEffect(() => {
         PacientesService.traer()
-        .then( (resp) => setPacientes(resp))
+        .then( (resp) => {
+            setPacientes(resp)
+            setLoading(false)
+        })
             // eslint-disable-next-line no-unused-vars
     }, [])
 
@@ -62,8 +66,15 @@ function ListadoPacientes() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    {resultados.length === 0 && <tr><td colSpan={5} className="text-center">No se han encontrado pacientes</td></tr>}
-                                    {resultados.map((paciente, i) =>
+                                    {loading &&
+                                        <tr>
+                                            <td className='text-center' colSpan={5}>
+                                                <Spinner animation="border" className='color-spinner' />
+                                            </td>
+                                        </tr>
+                                    }
+                                    {!loading && resultados.length === 0 && <tr><td colSpan={5} className="text-center">No se han encontrado pacientes</td></tr>}
+                                    {!loading && resultados.map((paciente, i) =>
                                         <tr key={i}>
                                             {!paciente.admin &&
                                             <>
@@ -74,7 +85,7 @@ function ListadoPacientes() {
                                             </>
                                             }
                                         </tr>
-                                    )}
+                                    ).reverse()}
                                     </tbody>
                                 </Table>
 

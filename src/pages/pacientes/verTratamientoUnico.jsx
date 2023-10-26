@@ -4,6 +4,7 @@ import { useState, useEffect, useContext } from 'react'
 import { Card, Container, Row, Col, Accordion, Spinner } from 'react-bootstrap'
 import * as PacientesService from '../../services/pacientes.service.js'
 import { UsuarioContext } from '../../context/UsuarioContext.jsx'
+import ReactPlayer from 'react-player/youtube'
 
 function VerTratamientoUnico() {
     const [tratamiento, setTratamiento] = useState([])
@@ -99,7 +100,13 @@ function VerTratamientoUnico() {
                                                                         <span className="fw-bold">Repeticiones:</span> <br className="d-block d-sm-none"/>{ejercicio.repeticiones}
                                                                     </span><br/>
                                                                     <span>
-                                                                        <span className="fw-bold">Video:</span><br className="d-block d-sm-none"/> {ejercicio.video}
+                                                                        <span className="fw-bold">Video:</span><br/> 
+                                                                        <div className='ratio ratio-16x9'>
+                                                                            <span>
+                                                                                <span className="fw-bold">Video:</span>
+                                                                            </span>
+                                                                            <ReactPlayer url={`${ejercicio.video}`} controls width='100%' height='100%' />
+                                                                        </div>
                                                                     </span>
                                                                 </li>
                                                                 )}

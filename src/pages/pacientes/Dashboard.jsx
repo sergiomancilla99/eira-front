@@ -42,7 +42,7 @@ function Dashboard() {
                                 <Card className="shadow border-0 py-3">
                                     <Card.Body className="text-center">
                                         <img src={Historia} alt="icono historia clínica" className="img-fluid mb-2"/>
-                                        <p className="mb-0 title-dashboard text-verde">Mis historia clínica</p>
+                                        <p className="mb-0 title-dashboard text-verde">Mi historia clínica</p>
                                     </Card.Body>
                                 </Card>
                             </Link>

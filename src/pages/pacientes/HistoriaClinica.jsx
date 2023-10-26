@@ -15,7 +15,6 @@ function VerHistoriaClinica() {
       PacientesService.traerHistoriaClinica(usuarioLogueado?._id)
         .then((resp) => {
           setHistoriaClinica(resp)
-          console.log(resp)
           setLoading(false)
         })
     } else {
@@ -70,9 +69,9 @@ function VerHistoriaClinica() {
                       <Card className="border-0 shadow my-4">
                         <Card.Header className="tratamiento-header">Medicamentos</Card.Header>
                         <Card.Body className="px-4">
-                          <ul className="lista-agregada d-md-flex justify-content-center mt-3">
+                          <ul className="lista-agregada mt-3">
                             {historiaClinica.medicamentos?.map((medicamento, i) =>
-                              <li className="shadow mx-2 mb-3 mb-md-0" key={i}>
+                              <li className="shadow mx-2 mb-3" key={i}>
                                 <span>{medicamento}</span>
                               </li>
                             )}
@@ -100,7 +99,7 @@ function VerHistoriaClinica() {
                       <Card.Body className="px-4">
                         <ul className="lista-antecedentes mt-3">
                           <li>
-                            <span className="fw-bold">cantidad de comidas por día:</span> {!historiaClinica.comidasDiarias ? <span>-</span> : historiaClinica.comidasDiarias}
+                            <span className="fw-bold">Cantidad de comidas por día:</span> {!historiaClinica.comidasDiarias ? <span>-</span> : historiaClinica.comidasDiarias}
                           </li>
                           <li>
                             <span className="fw-bold">Sigue una dieta:</span> {!historiaClinica.dieta ? <span>-</span> : historiaClinica.dieta}
@@ -139,7 +138,7 @@ function VerHistoriaClinica() {
                                     }
                                   </span>
 
-                                  <span>
+                                  <span className='mt-4'>
                                     <a href={file} target="_blank" rel="noopener noreferrer" className='btn btn-azul me-3 btn-padding'>Ver</a>
                                     <Button onClick={() => downloadFile(file)} variant="verde" className="btn-padding">Descargar</Button>
                                   </span>

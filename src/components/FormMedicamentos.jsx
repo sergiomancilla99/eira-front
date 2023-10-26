@@ -4,6 +4,7 @@ import { Form, Button, FloatingLabel } from 'react-bootstrap'
 import Select from 'react-select'
 import * as apiMedicamentos from '../services/apiMedicamentos.service.js'
 import { DateTime } from 'luxon'
+import { toast } from "react-hot-toast"
 
 function FormMedicamentos(props) {
     const [medicamento, setMedicamento] = useState("")
@@ -14,8 +15,12 @@ function FormMedicamentos(props) {
     const [listaMedicamentos, setListaMedicamentos] = useState([])
 
     function agregarMedicamento() {
-        console.log("agrego a lista de medicamentos")
-        setMedicamentos( prev =>
+        if(!medicamento || !horas || !fecha) {
+            console.log(medicamento, "MEDICAMENTO VACIO")
+            toast.error("No debe haber campos vacíos")
+        } else {
+            console.log(medicamento, "HAY MEDICAMENTO")
+            setMedicamentos( prev =>
                 [
                     ...prev,
                     {
@@ -30,6 +35,8 @@ function FormMedicamentos(props) {
         setHoras("")
         setFecha("")
         setBusqueda("")
+        }
+       
     }
 
     useEffect(() => {

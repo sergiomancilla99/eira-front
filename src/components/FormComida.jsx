@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react"
 import { Form, Button, FloatingLabel } from 'react-bootstrap'
+import { toast } from "react-hot-toast"
 
 function FormComida(props) {
     const [comida, setComida] = useState("")
     const [comidas, setComidas] = useState([])
 
     function agregarComida(ev) {
-        setComidas(prev => [...prev, comida]);
-        setComida("");
+        if(!comida.trim() || comida.length === 0) {
+            console.log("NO HAY COMIDA")
+            toast.error("El campo no debe estar vacio")
+        } else {
+            console.log(comida.trim(),"HAY COMIDA")
+            setComidas(prev => [...prev, comida])
+            setComida("")
+        }
     }
 
     useEffect(() => {

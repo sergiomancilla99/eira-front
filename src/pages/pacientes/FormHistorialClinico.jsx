@@ -1,85 +1,101 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Form, Row, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import * as PacienteService from "../../services/pacientes.service.js"
+import * as apiMedicamentos from '../../services/apiMedicamentos.service.js'
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import { toast } from "react-hot-toast"
+import Select from 'react-select'
 
-function FormHistorialClinico () {
-    const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'))
-    const [condicion, setCondicion] = useState("")
-    const [alergia, setAlergia] = useState("")
-    const [peso, setPeso] = useState("")
-    const [altura, setAltura] = useState("")
-    const [medicamento, setMedicamento] = useState("")
-    const [medicamentos, setMedicamentos] = useState([])
-    const [fumador, setFumador] = useState("No")
-    const [alcohol, setAlcohol] = useState("No")
-    const [comidasDiarias, setComidasDiarias] = useState("")
-    const [dieta, setDieta] = useState("")
-    const [habitosSuenio, setHabitosSuenio] = useState("")
-    const [antecedentesFamiliares, setAntecedentesFamiliares] = useState("")
+function FormHistorialClinico() {
+	const usuarioLogueado = JSON.parse(localStorage.getItem('usuario'))
+	const [condicion, setCondicion] = useState("")
+	const [alergia, setAlergia] = useState("")
+	const [peso, setPeso] = useState("")
+	const [altura, setAltura] = useState("")
+	const [medicamento, setMedicamento] = useState("")
+	const [medicamentos, setMedicamentos] = useState([])
+	const [fumador, setFumador] = useState("No")
+	const [alcohol, setAlcohol] = useState("No")
+	const [comidasDiarias, setComidasDiarias] = useState("")
+	const [dieta, setDieta] = useState("")
+	const [habitosSuenio, setHabitosSuenio] = useState("")
+	const [antecedentesFamiliares, setAntecedentesFamiliares] = useState("")
 	const [imagen, setImagen] = useState([])
 	let [error, setError] = useState(false)
-    const [loadingButton, setLoadingButton] = useState(false)
+	const [loadingButton, setLoadingButton] = useState(false)
+	const [listaMedicamentos, setListaMedicamentos] = useState([])
+	const [busqueda, setBusqueda] = useState("")
 
 
 	let navigate = useNavigate();
 	function agregarMedicamento(ev) {
-		setMedicamentos(prev => [...prev, medicamento]);
-		setMedicamento("");
+		if (!medicamento) {
+			console.log(medicamento, "MEDICAMENTO VACIO")
+			toast.error("No podés agregar medicamento vacío")
+		} else {
+			setMedicamentos(prev => [...prev, medicamento])
+			setMedicamento("")
+			setBusqueda("")
+		}
 	}
 
 	async function handleSubmit(ev) {
 		ev.preventDefault()
-		setLoadingButton(true)
-		console.log("envio fotos", imagen)
-		const arrayURLs = []
-		let data = new FormData()
-		data.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET)
-		data.append('cloud_name', process.env.REACT_APP_CLOUDINARY_CLOUD_NAME)
-		for (let img of imagen) {
-			if (img.type === "image/jpeg" || img.type === "image/png" || img.type === "application/pdf") {
-				console.log("hag todo el proceso ok")
-				data.append('file', img)
-
-				await fetch(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`, {
-					method: "POST",
-					body: data
-				})
-					.then(resp => resp.json())
-					.then(data => {
-						const urlFile = data.secure_url
-						console.log("LINK", urlFile)
-						arrayURLs.push(urlFile)
+		if(!condicion || !alergia || !peso || !altura) {
+            toast.error(`Los siguientes campos son obligatorios: ${!condicion ? "diagnostico," : ""} ${!alergia ? "alergia," : ""} ${!peso ? "peso," : ""} ${!altura ? "altura" : ""}`)
+        } else {
+			setLoadingButton(true)
+			const arrayURLs = []
+			let data = new FormData()
+			data.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET)
+			data.append('cloud_name', process.env.REACT_APP_CLOUDINARY_CLOUD_NAME)
+			for (let img of imagen) {
+				if (img.type === "image/jpeg" || img.type === "image/png" || img.type === "application/pdf") {
+					data.append('file', img)
+	
+					await fetch(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`, {
+						method: "POST",
+						body: data
 					})
-			} else {
-				setError(true)
+						.then(resp => resp.json())
+						.then(data => {
+							const urlFile = data.secure_url
+							arrayURLs.push(urlFile)
+						})
+				} else {
+					setError(true)
+				}
 			}
+			PacienteService.crearHistoriaClinica(
+				usuarioLogueado?._id,
+				{
+					paciente: usuarioLogueado?._id,
+					condicion,
+					alergia,
+					peso,
+					altura,
+					medicamentos,
+					fumador,
+					alcohol,
+					comidasDiarias,
+					dieta,
+					habitosSuenio,
+					antecedentesFamiliares,
+					imagenes: arrayURLs
+				})
+				.then(resp => {
+					setLoadingButton(false)
+					navigate(`/paciente/historia-clinica`, { replace: true })
+				})
 		}
-		console.log("Array URLS", arrayURLs)
-		PacienteService.crearHistoriaClinica(
-			usuarioLogueado?._id,
-			{
-				paciente: usuarioLogueado?._id,
-				condicion,
-				alergia,
-				peso,
-				altura,
-				medicamentos,
-				fumador,
-				alcohol,
-				comidasDiarias,
-				dieta,
-				habitosSuenio,
-				antecedentesFamiliares,
-				imagenes: arrayURLs
-			})
-			.then(resp => {
-				setLoadingButton(false)
-				navigate(`/paciente/historia-clinica`, { replace: true })
-			})
+		
 	}
 
+	useEffect(() => {
+        apiMedicamentos.traer(busqueda)
+        .then((data) => setListaMedicamentos(data.resultados))
+    }, [busqueda])
 	return (
 		<main className="fondo-generico">
 			<section>
@@ -100,12 +116,12 @@ function FormHistorialClinico () {
 									<Row className="my-3">
 										<Col>
 											<FloatingLabel controlId="peso" label="¿Cuál es tu peso (kg)?">
-												<Form.Control type="number" placeholder="¿Cuál es tu peso (kg)?" name="peso" value={peso} onChange={(ev) => setPeso(ev.target.value)} />
+												<Form.Control type="number" min="0" placeholder="¿Cuál es tu peso (kg)?" name="peso" value={peso} onChange={(ev) => setPeso(ev.target.value)} />
 											</FloatingLabel>
 										</Col>
 										<Col>
 											<FloatingLabel controlId="altura" label="¿Cuál es tu altura (cm)?">
-												<Form.Control type="number" placeholder="¿Cuál es tu altura (cm)?" name="altura" value={altura} onChange={(ev) => setAltura(ev.target.value)} />
+												<Form.Control type="number" min="0" placeholder="¿Cuál es tu altura (cm)?" name="altura" value={altura} onChange={(ev) => setAltura(ev.target.value)} />
 											</FloatingLabel>
 										</Col>
 									</Row>
@@ -113,19 +129,26 @@ function FormHistorialClinico () {
 									<Card className="border-0 shadow my-4">
 										<Card.Header className="tratamiento-header">Medicamentos</Card.Header>
 										<Card.Body className="px-4">
-											<FloatingLabel className="my-3" controlId="medicamento" label="Nombre del medicamento que estás tomando actualmente">
-												<Form.Control type="text" placeholder="Nombre del medicamento que estás tomando actualmente" name="medicamento" value={medicamento} onChange={(ev) => setMedicamento(ev.target.value)} />
-											</FloatingLabel>
+											<div className="mb-4">
+												<Select
+													defaultValue={{ label: "Nombre medicamento", value: "" }}
+													options={listaMedicamentos.map(medi => ({ label: medi.nombre, value: medi.nombre }))}
+													onChange={(ev) => ev ? setMedicamento(ev.value) : ""}
+													onInputChange={(ev) => setBusqueda(ev)}
+													noOptionsMessage={() => "No se encuentra el medicamento que busca..."}
+													isSearchable
+												/>
+											</div>
 											<div className="d-flex justify-content-center">
 												<Button variant="agregar" onClick={agregarMedicamento}>
 													Agregar
 												</Button>
 											</div>
 											<p className="fw-bold text-center mt-4">Lista medicamentos</p>
-											<ul className="lista-agregada d-flex justify-content-center">
-												{medicamentos.map((comida, i) =>
-													<li key={i} className="shadow mx-2">
-														{comida}
+											<ul className="lista-agregada">
+												{medicamentos.map((medicamento, i) =>
+													<li key={i} className="shadow mx-2 mb-3">
+														{medicamento}
 													</li>
 												)}
 											</ul>
@@ -162,7 +185,7 @@ function FormHistorialClinico () {
 										<Card.Header className="tratamiento-header">Hábitos</Card.Header>
 										<Card.Body className="px-4">
 											<FloatingLabel className="my-3" controlId="comidaDiaria" label="¿Cuántas comidas por día ingerís?">
-												<Form.Control type="number" name="comidaDiaria" placeholder="¿Cuántas comidas por día ingerís?" value={comidasDiarias} onChange={(ev) => setComidasDiarias(ev.target.value)} />
+												<Form.Control type="number" min="0" name="comidaDiaria" placeholder="¿Cuántas comidas por día ingerís?" value={comidasDiarias} onChange={(ev) => setComidasDiarias(ev.target.value)} />
 											</FloatingLabel>
 											<FloatingLabel className="my-3" controlId="dieta" label="¿Seguís alguna dieta?">
 												<Form.Control as="textarea" rows={3} name="dieta" placeholder="¿Seguís alguna dieta?" value={dieta} onChange={(ev) => setDieta(ev.target.value)} />
@@ -197,13 +220,13 @@ function FormHistorialClinico () {
 
 									<div className='mt-5 mb-3 d-flex justify-content-center'>
 										<Button type="submit" variant="crear-tratamiento" disabled={loadingButton}>
-                                            {loadingButton &&
-                                                <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true"/>
-                                            }
-                                            {!loadingButton &&
-                                                <span>Guardar mi historial clínico</span>
-                                            }
-                                        </Button>
+											{loadingButton &&
+												<Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
+											}
+											{!loadingButton &&
+												<span>Guardar mi historial clínico</span>
+											}
+										</Button>
 									</div>
 								</Form>
 							</Card>

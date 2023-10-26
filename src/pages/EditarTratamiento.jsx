@@ -21,8 +21,11 @@ function EditarTratamiento(props) {
 
     useEffect(
         () => {
-            if(!usuarioLogueado?.matricula) { navigate('/', { replace: true }) }
-            if(!usuarioLogueado?.verificado) { navigate('/falta-verificacion', {replace: true}) }
+            if(!usuarioLogueado?.matricula) {
+                navigate('/paciente', { replace: true })
+            } else if(!usuarioLogueado?.verificado) {
+                navigate('/falta-verificacion', {replace: true})
+            }
           // eslint-disable-next-line
         }, [])
 

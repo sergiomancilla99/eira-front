@@ -7,6 +7,7 @@ import IconoEliminar from '../imgs/eliminar-25.png'
 import IconoEditar from '../imgs/editar-25.png'
 import { UsuarioContext } from '../context/UsuarioContext.jsx'
 import Swal from 'sweetalert2'
+import ReactPlayer from 'react-player/youtube'
 
 function VerTratamiento() {
     const { id } = useParams()
@@ -195,10 +196,13 @@ function VerTratamiento() {
                                         <Accordion.Item eventKey={tratamiento._id}>
                                             <Accordion.Header>Diagnóstico:&nbsp;<b>{tratamiento.diagnostico}</b></Accordion.Header>
                                             <Accordion.Body>
-                                                {tratamiento.tratamiento.comidas?.length > 0 &&
+
                                                     <Card className="border-0 shadow my-4">
                                                         <Card.Header className="tratamiento-header-paciente">Comidas Restringidas</Card.Header>
                                                         <Card.Body className="px-4">
+                                                        {tratamiento.tratamiento.comidas?.length === 0 &&
+                                                        <p>No se indicaron comidas restringidas</p>}
+                                                            {tratamiento.tratamiento.comidas?.length > 0 &&
                                                             <ul className="lista-agregada d-md-flex justify-content-start">
                                                                 {tratamiento.tratamiento.comidas?.map((comida, k) =>
                                                                     <li className="shadow mx-2 px-0 mb-3 mb-md-0 px-md-5" key={k}>
@@ -213,17 +217,19 @@ function VerTratamiento() {
                                                                     </li>
                                                                 )}
                                                             </ul>
+                                                            }
                                                             {usuarioLogueado?.matricula && <div className='d-flex justify-content-center text-center'>
                                                                 <Link to={`/tratamiento/${tratamiento._id}/agregar-comida`} className="btn-agregar-trat">+ Agregar comidas</Link>
                                                             </div>}
                                                         </Card.Body>
                                                     </Card>
-                                                }
 
-                                                {tratamiento.tratamiento.medicamentos?.length > 0 &&
                                                     <Card className="border-0 shadow my-4">
                                                         <Card.Header className="tratamiento-header-paciente">Medicamentos</Card.Header>
                                                         <Card.Body className="px-4">
+                                                        {tratamiento.tratamiento.medicamentos?.length === 0 &&
+                                                        <p>No se indicaron medicamentos</p>}
+                                                        {tratamiento.tratamiento.medicamentos?.length > 0 &&
                                                             <ul className="lista-agregada-meds">
                                                                 {tratamiento.tratamiento.medicamentos?.map((medicamento, i) =>
                                                                     <li className="shadow mb-3" key={i}>
@@ -246,17 +252,21 @@ function VerTratamiento() {
                                                                         </li>
                                                                     )}
                                                             </ul>
+                                                            }
                                                             {usuarioLogueado?.matricula && <div className='d-flex justify-content-center text-center'>
                                                                 <Link to={`/tratamiento/${tratamiento._id}/agregar-medicamento`} className="btn-agregar-trat">+ Agregar medicamentos</Link>
                                                             </div>}
                                                         </Card.Body>
                                                     </Card>
-                                                }
 
-                                                {tratamiento.tratamiento.ejercicios?.length > 0 &&
+
+
                                                     <Card className="border-0 shadow my-4">
                                                         <Card.Header className="tratamiento-header-paciente">Ejercicios</Card.Header>
                                                         <Card.Body className="px-4">
+                                                        {tratamiento.tratamiento.ejercicios?.length === 0 &&
+                                                        <p>No se indicaron ejercicios</p>}
+                                                        {tratamiento.tratamiento.ejercicios?.length > 0 &&
                                                             <ul className="lista-agregada-meds">
                                                                 {tratamiento.tratamiento.ejercicios?.map((ejercicio, l) =>
                                                                 <li className="shadow mb-3" key={l}>
@@ -273,17 +283,24 @@ function VerTratamiento() {
                                                                                 <span className="fw-bold">Cantidad de repeticiones:</span>  <br className="d-block d-sm-none" />{ejercicio.repeticiones}
                                                                             </span><br />
                                                                             <span className="me-5">
-                                                                                <span className="fw-bold">Video:</span>  <br className="d-block d-sm-none" />{ejercicio.video}
+                                                                                <span className="fw-bold">Video:</span>  <br />
+                                                                                <div className='ratio ratio-16x9'>
+                                                                                    <span>
+                                                                                        <span className="fw-bold">Video:</span>
+                                                                                    </span>
+                                                                                    <ReactPlayer url={`${ejercicio.video}`}  controls width='100%' height='100%' />
+                                                                                    </div>
                                                                             </span>
                                                                         </li>
                                                                     )}
                                                             </ul>
+                                                            }
                                                             {usuarioLogueado?.matricula && <div className='d-flex justify-content-center text-center'>
                                                                 <Link to={`/tratamiento/${tratamiento._id}/agregar-ejercicio`} className="btn-agregar-trat">+ Agregar ejercicios</Link>
                                                             </div>}
                                                         </Card.Body>
                                                     </Card>
-                                                }
+
 
                                                 <Card.Footer className="bg-transparent border-0">
                                                     {usuarioLogueado?.matricula && <form onSubmit={handleSubmitBorrarTratamiento}>
@@ -352,9 +369,15 @@ function VerTratamiento() {
                                                                         <span>
                                                                             <span className="fw-bold">Repeticiones:</span> <br className="d-block d-sm-none" />{ejercicio.repeticiones}
                                                                         </span><br />
-                                                                        <span>
+                                                                        {/* <span>
                                                                             <span className="fw-bold">Video:</span><br className="d-block d-sm-none" /> {ejercicio.video}
+                                                                        </span> */}
+                                                                        <div className='ratio ratio-16x9'>
+                                                                        <span>
+                                                                            <span className="fw-bold">Video:</span>
                                                                         </span>
+                                                                        <ReactPlayer url={`${ejercicio.video}`} controls width='100%' height='100%' />
+                                                                        </div>
                                                                     </li>
                                                                 )}
                                                             </ul>

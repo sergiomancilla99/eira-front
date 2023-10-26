@@ -53,6 +53,8 @@ import EditarHistoriaClinica from './pages/pacientes/EditarHistoriaClinica'
 import TerminosYCondiciones from './pages/TerminosYCondiciones'
 import PoliticasDePrivacidad from './pages/PoliticasDePrivacidad'
 import { Link } from "react-router-dom";
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import * as RecordatorioService from './services/recordatorios.service.js'
 
 function App() {
   const [usuarioLogueado, setUsuarioLogueado] = useState(JSON.parse(localStorage.getItem('usuario')))
@@ -64,18 +66,16 @@ function App() {
   let navigate = useNavigate();
   const socket = useContext(SocketContext)
   const recordatorios = useContext(RecordatoriosContext)
-  console.log(process.env.REACT_APP_BASE)
-  console.log(process.env.REACT_APP_BASE)
+  const [historial, setHistorial] = useState({})
 
   if (Notification.permission !== 'granted') {
-    console.log("no tiene permisos")
     Notification.requestPermission().then(function (permission) { })
   }
 
 
   function onLogin({ usuario, token }) {
     signInAnonymously(getAuth())
-    .then(user => console.log("Auth de firebase", user))
+    .then(user => {})
     setUsuarioLogueado(usuario)
     activarMensajes(usuario)
     localStorage.setItem('usuario', JSON.stringify(usuario))
@@ -92,13 +92,11 @@ function App() {
   }
 
   const activarMensajes = async (usuario) => {
-    console.log("2")
     const token = await getToken(messaging, {
       vapidKey: process.env.REACT_APP_FIREBASE_VAPID_KEY
     })
-      .catch(error => console.log("Hubo un error al generar el token.,,,", error))
+      .catch(error => console.log("Hubo un error al generar el token."))
     if (token) {
-      console.log("3")
       setTokenFB(token)
 
       localStorage.setItem('tokenFB', token)
@@ -114,26 +112,17 @@ function App() {
         <Link to={`/paciente/confirmacion`} state={{ medicamento: {nombre: medicamento}, profesional: JSON.parse(message.data.profesional), idTratamiento: message.data.idTratamiento, diagnostico: "" }}>{message.notification.body}</Link>
       </span>, {
         icon: '🔔',
+        duration: 20000
       })
     })
   }, [])
 
-  useEffect(() => {
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.addEventListener('message', event => {
-        const profesional = JSON.parse(event.data.data.profesional)
-        const medicamento = { nombre: event.data.notification.body }
-        const idTratamiento = event.data.data.idTratamiento
-        navigate(`/paciente/confirmacion`, { replace: true, state: { medicamento, profesional, idTratamiento, diagnostico: "" } })
-      });
-    }
-  }, []);
 
 
   return (
     <UsuarioContext.Provider value={{ usuarioLogueado, setUsuarioLogueado }} >
       <SocketContext.Provider value={socket} >
-        <RecordatoriosContext.Provider value={recordatorios} >
+        <RecordatoriosContext.Provider value={{recordatorios, historial}} >
       {!usuarioLogueado && <NavbarEiraLanding />}
       {usuarioLogueado && <NavbarEira />}
       <Routes>

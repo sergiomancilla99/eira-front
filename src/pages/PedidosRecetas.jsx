@@ -20,8 +20,11 @@ function PedidosRecetas() {
 
     useEffect(
         () => {
-            if(!usuarioLogueado?.matricula) { navigate('/', { replace: true }) }
-            if(!usuarioLogueado?.verificado) { navigate('/falta-verificacion', {replace: true}) }
+            if(!usuarioLogueado?.matricula) {
+                navigate('/paciente', { replace: true })
+            } else if(!usuarioLogueado?.verificado) {
+                navigate('/falta-verificacion', {replace: true})
+            }
           // eslint-disable-next-line
         }, [])
 
@@ -43,7 +46,6 @@ function PedidosRecetas() {
         data.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET)
         data.append('cloud_name', process.env.REACT_APP_CLOUDINARY_CLOUD_NAME)
         if(imagen.type === "image/jpeg" || imagen.type === "image/png" || imagen.type === "application/pdf") {
-            console.log("hag todo el proceso ok")
             fetch(`https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`, {
                 method: "POST",
                 body: data

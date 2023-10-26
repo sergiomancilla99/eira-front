@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import ObjectId from "bson-objectid"
 import { Form, Button, FloatingLabel } from 'react-bootstrap'
+import { toast } from "react-hot-toast"
 
 function FormEjercicios(props) {
     const [ejercicio, setEjercicio] = useState("")
@@ -9,19 +10,24 @@ function FormEjercicios(props) {
     const [repeticiones, setRepeticiones] = useState("")
 
     function agregarEjercicio(ev) {
-        setEjercicios(prev =>
-            [
-                ...prev,
-                {
-                    id: ObjectId(),
-                    ejercicio,
-                    video,
-                    repeticiones
-                }
-            ]);
-        setEjercicio("");
-        setVideo("");
-        setRepeticiones("");
+        if(!ejercicio || !video || !repeticiones) {
+            toast.error(`Hay campos vacios en ejercicios`)
+            
+        } else {
+            setEjercicios(prev =>
+                [
+                    ...prev,
+                    {
+                        id: ObjectId(),
+                        ejercicio,
+                        video,
+                        repeticiones
+                    }
+                ]);
+            setEjercicio("");
+            setVideo("");
+            setRepeticiones("");
+        }
     }
 
     useEffect(() => {
@@ -54,7 +60,7 @@ function FormEjercicios(props) {
                         <span className="fw-bold">Cantidad de repeticiones:</span> {ejercicio.repeticiones}
                     </span>
                     <span className="me-5">
-                        <span className="fw-bold">Video:</span> {ejercicio.video}
+                        <span className="fw-bold">Video:</span> <a href={ejercicio.video} target="_blank" rel="noopener noreferrer">link</a>
                     </span>
                 </li>
                 )}

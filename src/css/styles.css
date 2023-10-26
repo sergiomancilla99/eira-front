@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 
-html, body, #root{
+html,
+body,
+#root {
     overflow-x: hidden;
     font-family: 'Poppins', sans-serif;
     height: 100%;
@@ -14,10 +16,11 @@ body {
 }
 
 main {
-    min-height: 88vh;
+    min-height: 90vh;
 }
 
-a, a:hover {
+a,
+a:hover {
     color: #4971b7;
 }
 
@@ -47,19 +50,25 @@ a, a:hover {
     padding-left: 5px;
 }
 
-#sign-in, #login {
+#sign-in,
+#login {
     background-image: url('../imgs/fondo-registro-login.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-#login h1, #sign-in h1 {
+#login h1,
+#sign-in h1 {
     font-weight: 600;
     font-size: 40px;
 }
 
-.btn-login, .btn-login:hover, .btn-login:disabled, .btn-login:active, .btn-login:focus {
+.btn-login,
+.btn-login:hover,
+.btn-login:disabled,
+.btn-login:active,
+.btn-login:focus {
     background-color: #f3944f;
     color: #fff;
     border: none;
@@ -127,7 +136,9 @@ a, a:hover {
     background-position: center;
 }
 
-#pacientes h2, #profesionales h2, #contacto h2 {
+#pacientes h2,
+#profesionales h2,
+#contacto h2 {
     font-weight: 800;
 }
 
@@ -158,7 +169,7 @@ a, a:hover {
     background-position: center;
 }
 
-#contacto button {
+#contacto #btn-enviar {
     background-color: #F3944D;
     border: none;
     font-size: 14px;
@@ -171,13 +182,21 @@ a, a:hover {
     color: #42B7AD;
 }
 
-.btn-verde, .btn-verde:hover, .btn-verde:active,.btn-verde:focus,.btn-verde:disabled {
+.btn-verde,
+.btn-verde:hover,
+.btn-verde:active,
+.btn-verde:focus,
+.btn-verde:disabled {
     background-color: #42B7AD;
     color: #fff;
     border: none;
 }
 
-.btn-verde-borde, .btn-verde-borde:hover, .btn-verde-borde:active, .btn-verde-borde:focus, .btn-verde-borde:disabled {
+.btn-verde-borde,
+.btn-verde-borde:hover,
+.btn-verde-borde:active,
+.btn-verde-borde:focus,
+.btn-verde-borde:disabled {
     background-color: transparent !important;
     border: solid 1px #42B7AD !important;
     color: #42B7AD !important;
@@ -206,11 +225,14 @@ a, a:hover {
     border-radius: 10px;
 }
 
-#buscador::placeholder, #horaForm::placeholder {
+#buscador::placeholder,
+#horaForm::placeholder {
     color: #666666;
 }
 
-#horaForm, #horaForm:focus, #confirmado {
+#horaForm,
+#horaForm:focus,
+#confirmado {
     background-color: #ededed;
     border: none;
     border-radius: 10px;
@@ -244,7 +266,16 @@ textarea.form-control {
     padding: 0.6rem 0.75rem !important;
 }
 
-#nombre, #apellido, #telefono, #email, #dni, #especialidad, #matricula, #password, #obraSocial, #afiliado {
+#nombre,
+#apellido,
+#telefono,
+#email,
+#dni,
+#especialidad,
+#matricula,
+#password,
+#obraSocial,
+#afiliado {
     background-position: 10px center;
     background-repeat: no-repeat;
     text-indent: 25px;
@@ -257,13 +288,14 @@ textarea.form-control {
 #mensajeContacto {
     background-position: 10px 10px;
     background-repeat: no-repeat;
-    text-indent: 25px ;
+    text-indent: 25px;
     background-color: #ededed;
     border: none;
     border-radius: 10px;
 }
 
-#nombre, #apellido {
+#nombre,
+#apellido {
     background-image: url('../imgs/icono-nombre.png');
 }
 
@@ -276,11 +308,13 @@ textarea.form-control {
     background-image: url('../imgs/icono-telefono-gris.png');
 }
 
-#email, #mensajeContacto {
+#email,
+#mensajeContacto {
     background-image: url('../imgs/icono-email-gris.png');
 }
 
-#dni, #afiliado {
+#dni,
+#afiliado {
     background-image: url('../imgs/icono-identificacion-gris.png');
 }
 
@@ -296,7 +330,8 @@ textarea.form-control {
     background-image: url('../imgs/icono-obra-social.png');
 }
 
-.form-control, .form-control:focus {
+.form-control,
+.form-control:focus {
     background-color: #ededed;
     border: none;
     border-radius: 10px;
@@ -318,15 +353,24 @@ form-control::placeholder {
     border-bottom: 2px solid #d9e3e1;
 }
 
-.btn-crear, .btn-crear:hover, .btn-crear:active, .btn-crear:focus, .btn-crear:disabled {
+.btn-crear,
+.btn-crear:hover,
+.btn-crear:active,
+.btn-crear:focus,
+.btn-crear:disabled {
     background-color: #42b7ad;
 }
 
-.btn-ver-progreso, .btn-ver-progreso:hover, .btn-ver-progreso:active, .btn-ver-progreso:focus, .btn-ver-progreso:disabled {
+.btn-ver-progreso,
+.btn-ver-progreso:hover,
+.btn-ver-progreso:active,
+.btn-ver-progreso:focus,
+.btn-ver-progreso:disabled {
     background-color: #014035;
 }
 
-.btn-ver-pswd, .btn-ver-pswd:hover {
+.btn-ver-pswd,
+.btn-ver-pswd:hover {
     background-color: #ededed;
     color: #262626;
     border-radius: 0 5px 5px 0;
@@ -334,32 +378,56 @@ form-control::placeholder {
     height: 45px;
 }
 
-.btn-ver, .btn-ver:hover, .btn-ver:active, .btn-ver:focus, .btn-ver:disabled {
+.btn-ver,
+.btn-ver:hover,
+.btn-ver:active,
+.btn-ver:focus,
+.btn-ver:disabled {
     background-color: #fbbe49;
 }
 
-.btn-eliminar, .btn-eliminar:hover, .btn-eliminar:active, .btn-eliminar:focus, .btn-eliminar:disabled {
+.btn-eliminar,
+.btn-eliminar:hover,
+.btn-eliminar:active,
+.btn-eliminar:focus,
+.btn-eliminar:disabled {
     background-color: #f3944d;
 }
 
-.btn-ver-historia, .btn-ver-historia:hover, .btn-ver-historia:active, .btn-ver-historia:focus, .btn-ver-historia:disabled {
+.btn-ver-historia,
+.btn-ver-historia:hover,
+.btn-ver-historia:active,
+.btn-ver-historia:focus,
+.btn-ver-historia:disabled {
     background-color: #4971b7;
 }
 
-.link-eliminar, .link-eliminar:hover, .link-eliminar:active, .link-eliminar:focus, .link-eliminar:disabled {
+.link-eliminar,
+.link-eliminar:hover,
+.link-eliminar:active,
+.link-eliminar:focus,
+.link-eliminar:disabled {
     background-color: transparent;
     text-decoration: none;
     color: #f3944f;
 }
 
-.btn-editar-trat, .btn-editar-trat:hover, .btn-editar-trat:active, .btn-editar-trat:focus, .btn-editar-trat:disabled {
+.btn-editar-trat,
+.btn-editar-trat:hover,
+.btn-editar-trat:active,
+.btn-editar-trat:focus,
+.btn-editar-trat:disabled {
     background-color: transparent;
     text-decoration: underline;
     color: #4971b7;
     font-size: 14px;
 }
 
-.btn-eliminar-trat, .btn-eliminar-trat:hover, .btn-eliminar-trat:active, .btn-eliminar-trat:focus, .btn-eliminar-trat:disabled {
+.btn-eliminar-trat,
+.btn-eliminar-trat:hover,
+.btn-eliminar-trat:active,
+.btn-eliminar-trat:focus,
+.btn-eliminar-trat:disabled {
     background-color: transparent;
     text-decoration: underline;
     color: #f3944f;
@@ -382,14 +450,16 @@ form-control::placeholder {
     margin: auto 7px;
 }
 
-.numPag.active .page-link, .numPag.active .page-link:hover {
+.numPag.active .page-link,
+.numPag.active .page-link:hover {
     color: #014035;
     background-color: #fff;
     border: 1px solid #014035;
     border-radius: 5px;
 }
 
-.numPag a, .numPag a:hover {
+.numPag a,
+.numPag a:hover {
     background-color: #014035;
     color: #fff;
     border: 1px solid #014035;
@@ -411,8 +481,12 @@ form-control::placeholder {
     border-radius: 5px !important;
 }
 
-.accordion-button, .accordion-button:link, .accordion-button:visited, .accordion-button:hover, .accordion-button:active  {
-    color:#262626 !important;
+.accordion-button,
+.accordion-button:link,
+.accordion-button:visited,
+.accordion-button:hover,
+.accordion-button:active {
+    color: #262626 !important;
     font-size: 18px;
     text-decoration: none !important;
     border: hidden !important;
@@ -450,7 +524,11 @@ form-control::placeholder {
     background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23f3944f'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>") !important;
 }
 
-.btn-crear-tratamiento, .btn-crear-tratamiento:hover, .btn-crear-tratamiento:disabled, .btn-crear-tratamiento:active, .btn-crear-tratamiento:focus  {
+.btn-crear-tratamiento,
+.btn-crear-tratamiento:hover,
+.btn-crear-tratamiento:disabled,
+.btn-crear-tratamiento:active,
+.btn-crear-tratamiento:focus {
     background-color: #f3944f;
     color: #ffffff;
     font-weight: 500;
@@ -460,7 +538,11 @@ form-control::placeholder {
     border: none;
 }
 
-.btn-agregar, .btn-agregar:hover, .btn-agregar:disabled, .btn-agregar:active, .btn-agregar:focus {
+.btn-agregar,
+.btn-agregar:hover,
+.btn-agregar:disabled,
+.btn-agregar:active,
+.btn-agregar:focus {
     background-color: #4971b7;
     color: #ffffff;
     font-weight: 500;
@@ -469,7 +551,11 @@ form-control::placeholder {
     padding: 3px 10px;
 }
 
-.btn-editar, .btn-editar:hover, .btn-editar:disabled, .btn-editar:active, .btn-editar:focus {
+.btn-editar,
+.btn-editar:hover,
+.btn-editar:disabled,
+.btn-editar:active,
+.btn-editar:focus {
     background-color: #4971b7;
     color: #ffffff;
     font-weight: 500;
@@ -478,7 +564,11 @@ form-control::placeholder {
     width: 35%;
 }
 
-.btn-agregar-trat, .btn-agregar-trat:hover, .btn-agregar-trat:active, .btn-agregar-trat:focus, .btn-agregar-trat:disabled {
+.btn-agregar-trat,
+.btn-agregar-trat:hover,
+.btn-agregar-trat:active,
+.btn-agregar-trat:focus,
+.btn-agregar-trat:disabled {
     background-color: #fbbe49;
     color: #ffffff;
     font-weight: 500;
@@ -489,12 +579,16 @@ form-control::placeholder {
     margin-top: 10px;
 }
 
-.lista-agregada, .lista-agregada-meds, .lista-antecedentes, .lista-archivos {
+.lista-agregada,
+.lista-agregada-meds,
+.lista-antecedentes,
+.lista-archivos {
     list-style: none;
     padding-left: 0;
 }
 
-.lista-antecedentes li, .lista-archivos li {
+.lista-antecedentes li,
+.lista-archivos li {
     padding: 15px 20px;
 }
 
@@ -509,7 +603,7 @@ form-control::placeholder {
     padding: 15px 20px;
 }
 
-.lista-agregada-meds li{
+.lista-agregada-meds li {
     background-color: #FFF;
     border: 1px solid #e5e5e5;
     padding: 15px 20px;
@@ -520,21 +614,30 @@ form-control::placeholder {
     border-top: 15px solid #4971b7;
 }
 
-.btn-editar-perfil, .btn-editar-perfil:hover, .btn-editar-perfil:active, .btn-editar-perfil:focus, .btn-editar-perfil:disabled {
+.btn-editar-perfil,
+.btn-editar-perfil:hover,
+.btn-editar-perfil:active,
+.btn-editar-perfil:focus,
+.btn-editar-perfil:disabled {
     background-color: #4971b7;
     color: #fff;
     padding: 3px 30px;
     border-radius: 10px;
 }
 
-.btn-eliminar-perfil, .btn-eliminar-perfil:hover, .btn-eliminar-perfil:active, .btn-eliminar-perfil:focus, .btn-eliminar-perfil:disabled {
+.btn-eliminar-perfil,
+.btn-eliminar-perfil:hover,
+.btn-eliminar-perfil:active,
+.btn-eliminar-perfil:focus,
+.btn-eliminar-perfil:disabled {
     background-color: #f3944f;
     color: #fff;
     padding: 3px 50px;
     border-radius: 10px;
 }
 
-#dashboard, #perfil {
+#dashboard,
+#perfil {
     background-image: url('../imgs/fondo-listado-pacientes.jpg');
     background-position: center;
     background-repeat: no-repeat;
@@ -611,7 +714,11 @@ a {
     text-decoration: none;
 }
 
-.acciones button, .acciones button:hover, .acciones button:active, .acciones button:focus, .acciones button:target  {
+.acciones button,
+.acciones button:hover,
+.acciones button:active,
+.acciones button:focus,
+.acciones button:target {
     font-size: 14px;
     background-color: #36beb0;
     border: none;
@@ -628,7 +735,8 @@ a {
     margin-left: 15px;
 }
 
-.swal2-title, .swal2-html-container {
+.swal2-title,
+.swal2-html-container {
     color: #262626;
     font-family: 'Poppins', sans-serif;
 }
@@ -638,7 +746,11 @@ a {
     padding: 3px 50px;
 }
 
-.btn-mensaje-chat, .btn-mensaje-chat:hover, .btn-mensaje-chat:active, .btn-mensaje-chat:focus, .btn-mensaje-chat:disabled {
+.btn-mensaje-chat,
+.btn-mensaje-chat:hover,
+.btn-mensaje-chat:active,
+.btn-mensaje-chat:focus,
+.btn-mensaje-chat:disabled {
     background-color: #36beb0;
     color: #ffffff;
     border: none;
@@ -660,16 +772,21 @@ a {
     color: #fff;
 }
 
-.mensaje-own #fecha, .mensaje-other #fecha {
+.mensaje-own #fecha,
+.mensaje-other #fecha {
     font-size: 12px;
 }
 
 .box-mensajes {
     height: 55vh;
-	overflow-y: scroll;
+    overflow-y: scroll;
 }
 
-.btn-azul, .btn-azul:hover, .btn-azul:active, .btn-azul:focus, .btn-azul:disabled {
+.btn-azul,
+.btn-azul:hover,
+.btn-azul:active,
+.btn-azul:focus,
+.btn-azul:disabled {
     background-color: #688FD6;
     color: #fff;
     border: none;
@@ -680,7 +797,11 @@ a {
     border-radius: 10px;
 }
 
-.btn-naranja, .btn-naranja:hover, .btn-naranja:active, .btn-naranja:focus, .btn-naranja:disabled {
+.btn-naranja,
+.btn-naranja:hover,
+.btn-naranja:active,
+.btn-naranja:focus,
+.btn-naranja:disabled {
     background-color: #f3944f;
     color: #ffffff;
     border: none;
@@ -721,8 +842,47 @@ a {
     padding: 20px 0 !important;
 }
 
+#div-notificaciones {
+    position: absolute;
+    left: 95%;
+}
+
+#drop-notificaciones {
+    color: #fff;
+    position: relative;
+    font-size: 22px;
+    margin-right: 20px;
+}
+
+#drop-notificaciones span {
+    left: 60%;
+    position: absolute;
+    top: 0;
+    font-size: 9px;
+}
+
+@media (max-width: 1800px) {
+    #div-notificaciones {
+        left: 93%;
+    }
+}
+
+@media (max-width: 1300px) {
+    #div-notificaciones {
+        left: 91%;
+    }
+}
+
+@media (max-width: 1100px) {
+    #div-notificaciones {
+        left: 90%;
+    }
+}
+
 @media (max-width: 992px) {
-    #header-home, #pacientes, #profesionales {
+    #header-home,
+    #pacientes,
+    #profesionales {
         text-align: center;
     }
 
@@ -735,7 +895,8 @@ a {
         font-size: 17px;
     }
 
-    #header-home img, #profesionales img {
+    #header-home img,
+    #profesionales img {
         width: 60%;
         margin-bottom: 30px;
     }
@@ -758,20 +919,36 @@ a {
         padding-bottom: 5px !important;
     }
 
-    .navbar-mobile a, .navbar-mobile form{
+    .navbar-mobile a,
+    .navbar-mobile form {
         margin-left: 38px;
     }
 
-    .btn-agregar, .btn-agregar:hover {
+    .btn-agregar,
+    .btn-agregar:hover {
         width: 30%;
     }
 
-    .btn-crear-tratamiento, .btn-crear-tratamiento:hover {
+    .btn-crear-tratamiento,
+    .btn-crear-tratamiento:hover {
         width: 35%;
     }
 
-    .btn-confirmacion-trat, .btn-confirmacion-trat:hover {
+    .btn-confirmacion-trat,
+    .btn-confirmacion-trat:hover {
         width: 25%;
+    }
+
+    #div-notificaciones {
+        left: 87%;
+        top: 1%;
+        padding: 11px 0;
+    }
+}
+
+@media (max-width: 840px) {
+    #div-notificaciones {
+        left: 85%;
     }
 }
 
@@ -780,15 +957,18 @@ a {
         width: 80%;
     }
 
-    #profesionales img, #pacientes img {
+    #profesionales img,
+    #pacientes img {
         width: 100%;
     }
 
-    .btn-agregar, .btn-agregar:hover {
+    .btn-agregar,
+    .btn-agregar:hover {
         width: 40%;
     }
 
-    .btn-crear-tratamiento, .btn-crear-tratamiento:hover {
+    .btn-crear-tratamiento,
+    .btn-crear-tratamiento:hover {
         width: 50%;
     }
 
@@ -796,21 +976,31 @@ a {
         font-size: 25px;
     }
 
-    .btn-editar, .btn-editar:hover, .btn-agregar-trat, .btn-agregar-trat:hover {
+    .btn-editar,
+    .btn-editar:hover,
+    .btn-agregar-trat,
+    .btn-agregar-trat:hover {
         width: 70%;
     }
 
-    .btn-confirmacion-trat, .btn-confirmacion-trat:hover {
+    .btn-confirmacion-trat,
+    .btn-confirmacion-trat:hover {
         width: 35%;
+    }
+
+    #div-notificaciones {
+        left: 82%;
     }
 }
 
 @media (max-width: 576px) {
-    .btn-login, .btn-login:hover {
+
+    .btn-login,
+    .btn-login:hover {
         width: 70%;
     }
 
-    #pacientes a, #profesionales a, #header-home a, #contacto button {
+    #pacientes a, #profesionales a, #header-home a, #contacto #btn-enviar {
         width: 80%;
     }
 
@@ -818,25 +1008,53 @@ a {
         font-size: 28px !important;
     }
 
-    .btn-agregar, .btn-agregar:hover {
+    .btn-agregar,
+    .btn-agregar:hover {
         width: 70%;
     }
 
-    .btn-crear-tratamiento, .btn-crear-tratamiento:hover {
+    .btn-crear-tratamiento,
+    .btn-crear-tratamiento:hover {
         width: 80%;
     }
 
-    .btn-editar, .btn-editar:hover, .btn-agregar-trat, .btn-agregar-trat:hover {
+    .btn-editar,
+    .btn-editar:hover,
+    .btn-agregar-trat,
+    .btn-agregar-trat:hover {
         width: 100%;
     }
 
-    .btn-confirmacion-trat, .btn-confirmacion-trat:hover {
+    .btn-confirmacion-trat,
+    .btn-confirmacion-trat:hover {
         width: 50%;
+    }
+
+    #div-notificaciones {
+        left: 78%;
+    }
+}
+
+@media (max-width: 480px) {
+    #div-notificaciones {
+        left: 75%;
+    }
+}
+
+@media (max-width: 400px) {
+    #div-notificaciones {
+        left: 72%;
+    }
+
+    #div-notificaciones .dropdown-menu {
+        max-width: 245px;
     }
 }
 
 @media (max-width: 375px) {
-    .btn-login, .btn-login:hover {
+
+    .btn-login,
+    .btn-login:hover {
         width: 100%;
     }
 
@@ -848,11 +1066,13 @@ a {
         font-size: 16px;
     }
 
-    #pacientes h2, #profesionales h2, #contacto h2 {
+    #pacientes h2,
+    #profesionales h2,
+    #contacto h2 {
         font-size: 23px;
     }
 
-    #pacientes a, #profesionales a, #header-home a, #contacto button {
+    #pacientes a, #profesionales a, #header-home a, #contacto #btn-enviar {
         width: 100%;
     }
 
@@ -864,11 +1084,51 @@ a {
         font-size: 25px !important;
     }
 
-    .btn-agregar, .btn-crear-tratamiento, .btn-agregar:hover, .btn-crear-tratamiento:hover {
+    .btn-agregar,
+    .btn-crear-tratamiento,
+    .btn-agregar:hover,
+    .btn-crear-tratamiento:hover {
         width: 100%;
     }
 
-    .btn-confirmacion-trat, .btn-confirmacion-trat:hover {
+    .btn-confirmacion-trat,
+    .btn-confirmacion-trat:hover {
         width: 80%;
     }
+
+    #div-notificaciones {
+        left: 70%;
+    }
 }
+
+.padre {
+    /* background-color: white; */
+    /* position: relative; */
+    /* border: 1px solid #ccc; */
+    /* padding: 20px; */
+    max-height: 300px;
+    max-width: 300px;
+    overflow: hidden;
+    overflow-y: scroll;
+
+}
+
+.fecha {
+    /* position: absolute; */
+    /* bottom: 0;
+    right: 0; */
+    font-size: 12px;
+    color: #999;
+}
+
+.padre::-webkit-scrollbar {
+    width: 0;
+    /* Oculta el scrollbar vertical en navegadores webkit (Chrome, Safari) */
+    background: transparent;
+    /* Cambia el color de fondo del scrollbar */
+}
+
+.quitar-hover:hover {
+    background-color: transparent !important;
+    color: inherit !important;
+  }

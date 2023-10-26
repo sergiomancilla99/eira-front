@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Card, Container, Row, Col, Form, Table, Tooltip, OverlayTrigger, Badge, Button } from 'react-bootstrap'
+import { Card, Container, Row, Col, Form, Table, Tooltip, OverlayTrigger, Badge, Button, Spinner } from 'react-bootstrap'
 import Paginador from '../../components/Paginador.jsx'
 import { useNavigate } from 'react-router-dom'
 import * as ProfesionalesService from '../../services/profesionales.service.js'
@@ -10,6 +10,7 @@ function ListadoMedicos() {
     const [paginaActual, setPaginaActual] = useState(1)
     // eslint-disable-next-line no-unused-vars
     const [medicosPorPagina, setMedicosPorPagina] = useState(5)
+    const [loading, setLoading] = useState(true)
 
     let navigate = useNavigate();
 
@@ -23,7 +24,10 @@ function ListadoMedicos() {
 
     useEffect(() => {
         ProfesionalesService.traer()
-        .then( (resp) => setMedicos(resp))
+        .then( (resp) => {
+            setMedicos(resp)
+            setLoading(false)
+        })
             // eslint-disable-next-line no-unused-vars
     }, [medicos])
 
@@ -38,7 +42,7 @@ function ListadoMedicos() {
 
     function verificacion(id) {
         ProfesionalesService.verificar(id)
-        .then((resp => console.log('se hizo el cambio en la verificacion')))
+        .then(resp => {})
     }
 
     return (
@@ -62,18 +66,27 @@ function ListadoMedicos() {
                                             <th>DNI</th>
                                             <th>Nombre</th>
                                             <th>Apellido</th>
+                                            <th>Matrícula</th>
                                             <th className='d-none d-lg-table-cell'>Email</th>
                                             <th>Verificado</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    {resultados.length === 0 && <tr><td colSpan={5} className="text-center">No se han encontrado médicos</td></tr>}
-                                    {resultados.map((medico, i) =>
+                                    {loading &&
+                                        <tr>
+                                            <td className='text-center' colSpan={5}>
+                                                <Spinner animation="border" className='color-spinner' />
+                                            </td>
+                                        </tr>
+                                    }
+                                    {!loading && resultados.length === 0 && <tr><td colSpan={5} className="text-center">No se han encontrado médicos</td></tr>}
+                                    {!loading && resultados.map((medico, i) =>
                                         <tr key={i}>
                                             <td>{medico.dni}</td>
                                             <td>{medico.nombre}</td>
                                             <td>{medico.apellido}</td>
+                                            <td>{medico.matricula}</td>
                                             <td className='d-none d-lg-table-cell'>{medico.email}</td>
                                             <td>{medico.verificado ? <Badge className='fw-semibold bg-verde'>Verificado</Badge> : <Badge className='fw-semibold bg-naranja'>Falta Verificar</Badge>}</td>
                                             <td className='d-flex'>
@@ -97,7 +110,7 @@ function ListadoMedicos() {
                                                 }
                                             </td>
                                         </tr>
-                                    )}
+                                    ).reverse()}
                                     </tbody>
                                 </Table>
 

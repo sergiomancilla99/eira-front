@@ -24,7 +24,6 @@ function ProgresoTratamiento() {
         })
         // eslint-disable-next-line
     }, [])
-    console.log(progreso)
 
     return (
         <main className="fondo-generico">
@@ -57,8 +56,8 @@ function ProgresoTratamiento() {
 
                                     {progreso.map((progreso, i) =>
                                     <Card body className='shadow mb-5 border-0 px-3' key={i}>
-                                        <p><span className="fw-bold">Diagnostico:</span> {progreso.diagnostico}</p>
-                                        <p className='fw-bold mt-4'><Link to={`/ver-tratamiento-unico`} state={{idTratamiento: progreso._id.idTratamiento}} className="link-historia">Ver tratamiento</Link></p>
+                                        <p><span className="fw-bold">Diagnóstico:</span> {progreso.diagnostico}</p>
+                                        
                                         <Table>
                                             <tbody>
                                             {progreso?.actividades.map((actividad, i) =>
@@ -68,7 +67,7 @@ function ProgresoTratamiento() {
                                                         <span className={actividad.confirmado ? 'confirmado' : 'no-confirmado'}>{actividad.confirmado ? "✓" : "X"}</span>&nbsp;&nbsp;&nbsp;{actividad.nombre} - <br className='d-block d-md-none'/><span className='fw-bold'>Horario de toma:</span> {actividad.hora}hs
                                                     </td>
                                                 </tr>
-                                                )}
+                                                ).reverse()}
                                             </tbody>
                                         </Table>
                                     </Card>

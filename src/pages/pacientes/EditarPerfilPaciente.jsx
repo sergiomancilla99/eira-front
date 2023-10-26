@@ -1,10 +1,12 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useLocation, useParams } from "react-router-dom"
 import * as PacienteService from "../../services/pacientes.service.js"
 import * as UsuariosService from "../../services/usuarios.service.js"
 import * as authService from "../../services/auth.service.js"
+import * as PrepagasService from "../../services/prepagas.service.js"
 import {Card, Container, Row, Col, Form, Button, FloatingLabel, Alert, Spinner } from 'react-bootstrap'
 import { useForm } from "react-hook-form"
+import Select from 'react-select'
 
 function EditarPerfilPaciente(props) {
     const location = useLocation()
@@ -23,6 +25,8 @@ function EditarPerfilPaciente(props) {
     const [success, setSuccess] = useState("")
     const [loadingButton, setLoadingButton] = useState(false)
     const [loadingButtonPswd, setLoadingButtonPswd] = useState(false)
+    const [listaObraSocial, setListaObraSocial] = useState([])
+    const [busqueda, setBusqueda] = useState("")
 
     function handleSubmit(ev) {
         ev.preventDefault()
@@ -32,7 +36,6 @@ function EditarPerfilPaciente(props) {
             authService.actualizarToken(email)
             .then(({usuario, token}) => {
                 setLoadingButton(false)
-                console.log('login?')
                 props.onLogin({usuario, token})
             })
         })
@@ -56,6 +59,13 @@ function EditarPerfilPaciente(props) {
             })
         })
     }
+
+	useEffect(()=> {
+		PrepagasService.traer()
+		.then(listaObraSocial => {
+            setListaObraSocial(listaObraSocial.nombres)
+		})
+	}, [])
 
     return (
         <main id="perfil">
@@ -99,6 +109,17 @@ function EditarPerfilPaciente(props) {
                                         <FloatingLabel className="my-3 floating-distance" as={Col} controlId="obraSocial" label="Obra Social" md={6}>
                                             <Form.Control type="text" placeholder="Obra Social*" name="obraSocial" value={obraSocial} onChange={(ev) => setObraSocial(ev.target.value)}/>
                                         </FloatingLabel>
+                                        {/* <div className="mb-4 col-md-6">
+                                            <label htmlFor="aa">Obra social</label>
+                                            <Select
+                                                defaultValue={ {label: obraSocial, value: obraSocial} }
+                                                options={ listaObraSocial.map(prepaga => ({ label: prepaga, value: prepaga}))}
+                                                onChange={(ev) => ev ? setObraSocial(ev.value):""}
+                                                onInputChange={(ev) => setBusqueda(ev)}
+                                                noOptionsMessage={() => "No se encuentra la obra social que busca..."}
+                                                isSearchable
+                                            />
+                                        </div> */}
                                         <FloatingLabel className="my-3 floating-distance" as={Col} controlId="afiliado" label="N° de afiliado" md={6}>
                                             <Form.Control type="text" placeholder="N° de afiliado" name="afiliado" value={afiliado}  onChange={(ev) => setAfiliado(ev.target.value)}/>
                                         </FloatingLabel>

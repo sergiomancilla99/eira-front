@@ -66,9 +66,9 @@ function VerHistoriaClinica() {
                       <Card className="border-0 shadow my-4">
                         <Card.Header className="tratamiento-header">Medicamentos</Card.Header>
                         <Card.Body className="px-4">
-                          <ul className="lista-agregada d-md-flex justify-content-center mt-3">
+                          <ul className="lista-agregada mt-3">
                             {historiaClinica.medicamentos?.map((medicamento, i) =>
-                              <li className="shadow mx-2" key={i}>
+                              <li className="shadow mx-2 mb-3" key={i}>
                                 <span>{medicamento}</span>
                               </li>
                             )}
@@ -95,26 +95,29 @@ function VerHistoriaClinica() {
                       <Card.Header className="tratamiento-header">Hábitos</Card.Header>
                       <Card.Body className="px-4">
                         <ul className="lista-antecedentes mt-3">
-                          <li>
-                            <span className="fw-bold">cantidad de comidas por día:</span> {historiaClinica.comidasDiarias}
+                        <li>
+                            <span className="fw-bold">Cantidad de comidas por día:</span> {!historiaClinica.comidasDiarias ? <span>-</span> : historiaClinica.comidasDiarias}
                           </li>
                           <li>
-                            <span className="fw-bold">Sigue una dieta:</span> {historiaClinica.dieta}
+                            <span className="fw-bold">Sigue una dieta:</span> {!historiaClinica.dieta ? <span>-</span> : historiaClinica.dieta}
                           </li>
                           <li>
-                            <span className="fw-bold">Hábitos de sueño:</span> {historiaClinica.habitosSuenio}
+                            <span className="fw-bold">Hábitos de sueño:</span> {!historiaClinica.habitosSuenio ? <span>-</span> : historiaClinica.habitosSuenio}
                           </li>
                         </ul>
                       </Card.Body>
                     </Card>
 
+                    {historiaClinica.antecedentesFamiliares?.length > 0 &&
                     <Card className="border-0 shadow my-4">
                       <Card.Header className="tratamiento-header">Antecedentes familiares</Card.Header>
                       <Card.Body className="px-4">
                         <p className='text-antecedentes'>{historiaClinica.antecedentesFamiliares}</p>
                       </Card.Body>
                     </Card>
-
+                    }
+                    
+              {historiaClinica.imagenes?.length > 0 &&
                     <Card className="border-0 shadow my-4">
                       <Card.Header className="tratamiento-header">Exámenes complementarios</Card.Header>
                       <Card.Body className="px-4">
@@ -131,8 +134,10 @@ function VerHistoriaClinica() {
                                   }
                                 </div><br />
 
-                                <span><a href={file} target="_blank" rel="noopener noreferrer">Ver</a></span>
-                                <Button onClick={() => downloadFile(file)} variant="verde">Descargar</Button>
+                                <span>
+                                  <a href={file} target="_blank" rel="noopener noreferrer" className='btn btn-azul me-3 btn-padding'>Ver</a>
+                                  <Button onClick={() => downloadFile(file)} variant="verde" className='btn-padding'>Descargar</Button>
+                                </span>
                               </li>
 
                             )
@@ -140,6 +145,7 @@ function VerHistoriaClinica() {
                         </ul>
                       </Card.Body>
                     </Card>
+                    }
                   </>
                 }
               </Card>
